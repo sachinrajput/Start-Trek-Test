@@ -12,12 +12,25 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-
+/**
+ * This will retrieve the Species as per the Name provided in the input
+ * First retrieve the all the UIDs through  Rest API as per the input and 
+ * then retrive the species as per UID  
+ * @author  Sachin Rajput
+ * @version 1.0
+ * @Revision Date 07/10/2018
+ */
 
 public class StarTrekClient 
 {
+	/**
+	 *  This will print the Species Name with found for the UID
+	 *  and if it is not found then it will display the message 
+	 * @param          Input String 
+	 * @return         
+	 */
 	public void printSpecies(String name) {
-
+		// List of Uid's correspoding to Name
 		List<String> uids = getUids(name);
 		if(uids.isEmpty()){
 			System.err.println("\nSpecies not found for the given input :"+name);
@@ -33,6 +46,11 @@ public class StarTrekClient
 		}
 
 	}
+	/**
+	 *  Retrieve the Species as per the UID retrieve correspoding to Name 
+	 * @param          UID 
+	 * @return         Return the Species as per the UID
+	 */
 	
 	private  String getSpeciesByUid(String uid) {
 		try {
@@ -80,7 +98,12 @@ public class StarTrekClient
 
 		} 
 	}
-
+	/**
+	 *  Retrieve the UID's as per the input provided 
+	 * @param          Input String 
+	 * @return         Return the UID's as per the Name provided in the input
+	 */
+	
 	private  List<String> getUids(String name) {
 		try {
 			String afterReplaceSpaceName= replaceAllSpaces(name);
@@ -125,8 +148,12 @@ public class StarTrekClient
 
 		} 
 	}
+	/**
+	 *  Replace the Spaces in the input with the '%20'
+	 * @param          Input String 
+	 * @return         Return the String after replacing the space with the '%20'
+	 */
 	
-// Replace the Spaces in the input with the '%20'
 private static String replaceAllSpaces(String name) {
 		name=name.replaceAll(" ", "%20");
 	    return name;
